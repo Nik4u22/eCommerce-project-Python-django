@@ -1,0 +1,59 @@
+{% extends 'nav.html' %}
+
+{% block title %}
+ e-commerce 
+{% endblock title %}
+
+{% block form %}
+<div class="row" data-aos="fade-up" data-aos-delay="400">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+        <form method="post" action="/auth/signup">
+            {% csrf_token %}
+            <h1 data-aos="fade-up">SignUp</h1>
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" name="lastname">
+              </div>    
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+            </div>
+            <div class="form-group">
+              <label for="password1">Password</label>
+              <input type="password" class="form-control" id="password1" name="password1">
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" class="form-control" id="password2" name="password2">
+            </div>
+            <br>
+            <div class="text-center"> 
+                <button type="submit" class="btn btn-primary">Signup</button>
+                <div> Already user? <a href="{% url 'signin' %}">Signin</a></div>
+            </div>
+
+            <div id="content">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} m-2" id="msg" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock form %}
+
+

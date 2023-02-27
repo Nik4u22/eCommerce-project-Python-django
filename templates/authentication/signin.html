@@ -1,0 +1,44 @@
+{% extends 'nav.html' %}
+
+{% block title %}
+ e-commerce 
+{% endblock title %}
+
+{% block form %}
+<div class="row" data-aos="fade-up" data-aos-delay="400">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+        <form method="Post" Action="/auth/signin">
+            {% csrf_token %}
+            <h1 data-aos="fade-up">SignIn</h1>
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">
+              <label for="password1">Password</label>
+              <input type="password" class="form-control" id="password1" name="password1">
+            </div><br>
+            <div class="text-center"> 
+                <button type="submit" class="btn btn-primary">Signin</button>
+                <br>Forgot password? <a href="{% url 'forget-password' %}">reset</a>
+                <br>
+                <span> Not registered? <a href="{% url 'signup' %}">Signup</a></span>
+            </div>
+
+            <div id="content">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} m-2" id="msg" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock form %}
+
+
